@@ -1,0 +1,294 @@
+<template>
+  <q-page class="flex">
+    <div class="header">
+      <h5 class="title">Aplikacion</h5>
+      <div class="mainsearch">
+        <q-input standout="bg-white text-white" bg-color="grey" color="white" dense label="Cfare jeni duke kerkuar?" class="search text-white">
+          <template v-slot:prepend>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </div>
+    </div>
+    <div class="welcome">
+      <div class="welc2">
+        <h4 class="welti">Miresevini ne aplikacion.</h4>
+        <div class="welph">
+        
+        </div>
+      </div>
+    </div>
+    <div class="kats">
+      <div class="katsh">
+        <q-btn flat round dense color="primary" icon="chevron_left" v-if="index != 0" @click="add(-1);animateScrollBefore()"/>
+        <q-btn flat round dense disabled color="grey" icon="chevron_left" v-if="index == 0"/>
+        <p class="katnav text-blue">Kategorite</p>
+        <q-btn flat round dense color="primary" icon="chevron_right"  v-if="index != 1" @click="add(1);animateScrollNext()"/>
+        <q-btn flat round dense disabled color="grey" icon="chevron_right"  v-if="index == 1"/>
+      </div>
+      <div class="katss">
+        <q-scroll-area ref="scrollAreaRef" :visible="visible" style="height: 120px; max-width: 3000px;" class="v-sc">
+          <div class="row no-wrap">
+            <div class="katsd relative-position" v-ripple.center:white v-for="el in kats" :key="el.id" :class="{extraMargined: el.id != 1}" @click="goto(el.link)">
+              <q-icon name="font_download" size="2rem"/>
+              <q-separator />
+              <q-separator />
+              <p class="name text-white" style="text-align:center;">{{el.title}}</p>
+            </div>
+          </div>
+        </q-scroll-area>
+      </div>
+    </div>
+    <div class="fit row no-wrap items-center justify-center">
+      <q-btn color="blue" dense text-color="white" class="extra-padded" label="Trego me shume" size="md" no-caps @click="moreKats = true"/>
+    </div>
+    <q-dialog
+        v-model="moreKats"
+        persistent
+        :maximized="maximizedToggle"
+        transition-show="slide-up"
+        transition-hide="slide-down"
+      >
+        <div class="fuller">
+          <div class="header-kat">
+            <q-icon name="arrow_back_ios_new" @click="moreKats = false"/>
+            <h5 class="text-h4" style="padding:0;margin:0;">Kategorite</h5>
+            <q-icon name="arrow_back_ios_new" @click="moreKats = false" style="z-index: -999;"/>
+          </div>
+          <div class="kat-main">
+            <div class="plate">
+              <q-scroll-area :visible="visible" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2">
+                <div class="single" v-for="kat in kats" :key="kat.id">
+                  <div class="lefty">
+                    <q-avatar color="primary" text-color="white">JA</q-avatar>
+                    <p class="text-p" style="padding: 0; margin: 0 0 0 15px;">{{kat.title}}</p>
+                  </div>
+                  <q-btn round color="blue-6" icon="arrow_forward" unelevated/>
+                </div>
+              </q-scroll-area>
+            </div>
+          </div>
+        </div>
+      </q-dialog>
+  </q-page>
+</template>
+
+<script>
+import { defineComponent } from 'vue'
+import { ref } from 'vue'
+
+export default defineComponent({
+  name: 'IndexPage',
+  setup () {
+
+    const position = ref(0)
+    const scrollAreaRef = ref(null)
+    return {
+      visible: ref(false),
+      moreKats: ref(false),
+      kats: [
+        {
+          title: "Arsimi",
+          link: "argetim",
+          id: 1
+        },
+        {
+          title: "Turizem & Kulture",
+          link: "argetim",
+          id: 2
+        },
+        {
+          title: "Teknologji",
+          link: "argetim",
+          id: 3
+        },
+        {
+          title: "Auto",
+          link: "argetim",
+          id: 4
+        },
+        {
+          title: "Argetim & Shplodhje",
+          link: "argetim",
+          id: 5
+        },
+        {
+          title: "Auto_3",
+          link: "argetim",
+          id: 6
+        }
+      ],
+      position,
+      scrollAreaRef,
+      maximizedToggle: ref(true),
+      add(num){
+        this.index = this.index + num;
+      },
+      animateScrollNext () {
+        position.value = position.value + 300
+        scrollAreaRef.value.setScrollPosition('horizontal', position.value, 300)
+      },
+      animateScrollBefore () {
+        position.value = position.value - 300
+        scrollAreaRef.value.setScrollPosition('horizontal', position.value, 300)
+      },
+      goto(link){
+        this.$router.push({path: '/categories/', query: {routename: link}})
+      }
+    }
+  },
+  data(){
+    return{
+      index: 0
+    }
+  }
+})
+</script>
+<style scoped>
+.header{
+  height: 15vh;
+  width: 100%;
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.mainsearch{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search{
+  width: 80%;
+}
+.title{
+  font-size: 1.2rem;
+}
+.welcome{
+  width: 100%;
+  padding: 20px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.welc2{
+  padding: 0px 30px 0px 30px;
+  border-radius: 25px;
+  background-color: rgb(49, 107, 216);
+  display: grid;
+  grid-template-columns: 60% 40%;
+  width: 90%;
+}
+.welti{
+  color: white;
+  font-size: 1.5em;
+}
+.kats{
+  width: 100%;
+  padding: 20px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.katsh{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 0 0px 0;
+  color: black;
+}
+.katnav{
+  font-size: 1.1rem;
+  padding: 0;
+  margin: 0;
+  transition: 0.3;
+}
+.katss{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  width: 90%;
+  scroll-behavior: smooth;
+}
+.katsd{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px 0 0 0;
+  height: 120px;
+  width: 90px;
+  background-color: rgb(43, 43, 105);
+}
+.extraMargined{
+  margin-left: 15px;
+}
+.v-sc{
+  overflow: visible;
+  width: 100%;
+}
+.extra-padded{
+  padding: 0 7px 0 7px;
+}
+.fuller{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  padding: 30px 0 30px 0;
+}
+.header-kat{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.kat-main{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.plate{
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: rgb(182, 180, 177);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 14px 15px 14px;
+}
+.single{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.lefty{
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.v-sc-2{
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+}
+</style>
