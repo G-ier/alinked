@@ -1,1 +1,98 @@
 /* app global css */
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* app global css */
+@keyframes fadeinGrad2 {
+    0% { opacity: 0; }
+    50% { opacity: 0;}
+    100%   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadeinGrad2 {
+    0% { opacity: 0; }
+    50% { opacity: 0;}
+    100%   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeinGrad2 {
+    0% { opacity: 0; }
+    50% { opacity: 0;}
+    100%   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeinGrad2 {
+    0% { opacity: 0; }
+    50% { opacity: 0;}
+    100%   { opacity: 1; }
+}
+
+.animated-fade {
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 1s; /* Firefox < 16 */
+        -ms-animation: fadein 1s; /* Internet Explorer */
+         -o-animation: fadein 1s; /* Opera < 12.1 */
+            animation: fadein 1s;
+}
+.chain-fade-1-grad2{
+    -webkit-animation: fadeinGrad2 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadeinGrad2 2s; /* Firefox < 16 */
+        -ms-animation: fadeinGrad2 2s; /* Internet Explorer */
+         -o-animation: fadeinGrad2 2s; /* Opera < 12.1 */
+            animation: fadeinGrad2 2s;
+}
+.chain-fade-2-grad2{
+    -webkit-animation: fadeinGrad2 2.1s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadeinGrad2 2.1s; /* Firefox < 16 */
+        -ms-animation: fadeinGrad2 2.1s; /* Internet Explorer */
+         -o-animation: fadeinGrad2 2.1s; /* Opera < 12.1 */
+            animation: fadeinGrad2 2.1s;
+}
+.chain-fade-3-grad2{
+    -webkit-animation: fadeinGrad2 2.2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadeinGrad2 2.2s; /* Firefox < 16 */
+        -ms-animation: fadeinGrad2 2.2s; /* Internet Explorer */
+         -o-animation: fadeinGrad2 2.2s; /* Opera < 12.1 */
+            animation: fadeinGrad2 2.2s;
+}
+.chain-fade-4-grad2{
+    -webkit-animation: fadeinGrad2 2.3s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadeinGrad2 2.3s; /* Firefox < 16 */
+        -ms-animation: fadeinGrad2 2.3s; /* Internet Explorer */
+         -o-animation: fadeinGrad2 2.3s; /* Opera < 12.1 */
+            animation: fadeinGrad2 2.3s;
+}
+
+.fullwidth{
+    width: 100%;
+}
+
+.bg-darkblue{
+    background-color: rgba(18, 22, 83, 0.945);
+}
+.text-darkblue{
+    color: rgba(18, 22, 83, 0.945);
+}

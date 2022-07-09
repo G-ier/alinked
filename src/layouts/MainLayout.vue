@@ -2,11 +2,11 @@
   <q-layout view="lHh Lpr lFf">
 
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
 
     <q-footer class="bg-white text-primary">
-        <div id="main-end">
+        <div id="main-end" style="background: rgba(0,0,0,0);">
           <div class="btn-over upper-hand">
              <q-btn push color="blue" round icon="search" class="upper-hand" @click="search = true"/>
           </div>
@@ -16,7 +16,7 @@
             inline-label
             class="bg-white text-blue shadow-2 second-end"
           >
-            <q-tab name="home" icon="home" />
+            <q-tab name="home" icon="home" @click="goto('/')"/>
             <q-tab name="mails" icon="mail" />
             <q-tab name="alarms" icon="alarm" />
             <q-tab name="movies" icon="movie" />
@@ -107,7 +107,11 @@ export default defineComponent({
   components: {
     EssentialLink
   },
-
+  data(){
+    return{
+      prevHeight: 0
+    }
+  },
   setup () {
     const leftDrawerOpen = ref(false)
 
@@ -118,13 +122,42 @@ export default defineComponent({
       fabCenter: ref(true),
       fabRight: ref(true),
       search: ref(false),
+      tab: ref('home'),
       maximizedToggle: ref(true),
+      goto(link){
+        this.$router.push({path: link})
+      }
     }
-  }
+  },
+  methods: {
+    beforeLeave(element) {
+      this.prevHeight = getComputedStyle(element).height;
+    },
+    enter(element) {
+      const { height } = getComputedStyle(element);
+
+      element.style.height = this.prevHeight;
+
+      setTimeout(() => {
+        element.style.height = height;
+      });
+    },
+    afterEnter(element) {
+      element.style.height = 'auto';
+    },
+  },
 })
 </script>
 
 <style scoped>
+.fade-enter-active,
+ .fade-leave-active {
+   transition-duration: 0.3s;
+   transition-property: opacity;
+   transition-property: height, opacity;
+   transition-timing-function: ease;
+   overflow: hidden;
+ }
 #main-end{
   width: 100%;
   display: flex;
@@ -132,12 +165,15 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   padding: 0 5px 0 5px;
+  background: rgba(0,0,0,0);
 }
 .second-end{
   width: 100%;
+  height: 100%;
   border-radius: 20px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+  background-color: rgba(0,0,0,0);
 }
 .custom-btn{
   position: relative;

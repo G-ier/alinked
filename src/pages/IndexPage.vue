@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex">
+  <q-page class="flex animated-fade">
     <div class="header">
       <h5 class="title">Aplikacion</h5>
       <div class="mainsearch">
@@ -27,9 +27,9 @@
         <q-btn flat round dense disabled color="grey" icon="chevron_right"  v-if="index == 1"/>
       </div>
       <div class="katss">
-        <q-scroll-area ref="scrollAreaRef" :visible="visible" style="height: 120px; max-width: 3000px;" class="v-sc">
+        <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="visible" style="height: 120px; max-width: 3000px;" class="v-sc">
           <div class="row no-wrap">
-            <div class="katsd relative-position" v-ripple.center:white v-for="el in kats" :key="el.id" :class="{extraMargined: el.id != 1}" @click="goto(el.link)">
+            <div class="katsd relative-position" v-ripple.center:white v-for="el in kats" :key="el.id" :class="{extraMargined: el.id != 1}" @click="goto(el.link, el.title)">
               <q-icon name="font_download" size="2rem"/>
               <q-separator />
               <q-separator />
@@ -57,13 +57,13 @@
           </div>
           <div class="kat-main">
             <div class="plate">
-              <q-scroll-area :visible="visible" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2">
+              <q-scroll-area :visible="visible" :thumb-style="thumbStyle" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2">
                 <div class="single" v-for="kat in kats" :key="kat.id">
                   <div class="lefty">
                     <q-avatar color="primary" text-color="white">JA</q-avatar>
                     <p class="text-p" style="padding: 0; margin: 0 0 0 15px;">{{kat.title}}</p>
                   </div>
-                  <q-btn round color="blue-6" icon="arrow_forward" unelevated/>
+                  <q-btn round color="blue-6" icon="arrow_forward" unelevated @click="goto(kat.link, kat.title)"/>
                 </div>
               </q-scroll-area>
             </div>
@@ -89,22 +89,22 @@ export default defineComponent({
       kats: [
         {
           title: "Arsimi",
-          link: "argetim",
+          link: "arsimi",
           id: 1
         },
         {
           title: "Turizem & Kulture",
-          link: "argetim",
+          link: "turizem",
           id: 2
         },
         {
           title: "Teknologji",
-          link: "argetim",
+          link: "teknologji",
           id: 3
         },
         {
           title: "Auto",
-          link: "argetim",
+          link: "auto",
           id: 4
         },
         {
@@ -113,11 +113,73 @@ export default defineComponent({
           id: 5
         },
         {
-          title: "Auto_3",
-          link: "argetim",
+          title: "Institucione shteterore",
+          link: "shteti",
           id: 6
+        },
+        {
+          title: "Shendetesia",
+          link: "shendetesia",
+          id: 7
+        },
+        {
+          title: "Sporti",
+          link: "sport",
+          id: 8
+        },
+        {
+          title: "Hoteleri",
+          link: "hotele",
+          id: 9
+        },
+        {
+          title: "Institucione fetare",
+          link: "fetare",
+          id: 11
+        },
+        {
+          title: "Diaspora",
+          link: "diaspora",
+          id: 12
+        },
+        {
+          title: "Sociale",
+          link: "sociale",
+          id: 13
+        },
+        {
+          title: "Imobiliare",
+          link: "imobiliare",
+          id: 14
+        },
+        {
+          title: "Libri & Kancelaria",
+          link: "libri",
+          id: 15
+        },
+        {
+          title: "Markete & Tregje",
+          link: "markete",
+          id: 16
+        },
+        {
+          title: "Arti",
+          link: "arti",
+          id: 17
+        },
+        {
+          title: "Punesim",
+          link: "punesim",
+          id: 18
         }
       ],
+      thumbStyle: {
+        right: '2px',
+        borderRadius: '5px',
+        backgroundColor: '#027be3',
+        width: '0px',
+        opacity: 0
+      },
       position,
       scrollAreaRef,
       maximizedToggle: ref(true),
@@ -132,8 +194,8 @@ export default defineComponent({
         position.value = position.value - 300
         scrollAreaRef.value.setScrollPosition('horizontal', position.value, 300)
       },
-      goto(link){
-        this.$router.push({path: '/categories/', query: {routename: link}})
+      goto(link, title){
+        this.$router.push({path: '/categories/', query: {routename: link, routetitle: title}})
       }
     }
   },
@@ -168,6 +230,7 @@ export default defineComponent({
 }
 .welcome{
   width: 100%;
+  height: 30vh;
   padding: 20px 0 20px 0;
   display: flex;
   flex-direction: column;
@@ -188,6 +251,7 @@ export default defineComponent({
 }
 .kats{
   width: 100%;
+  height: 30vh;
   padding: 20px 0 20px 0;
   display: flex;
   flex-direction: column;
