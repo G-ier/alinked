@@ -3,7 +3,7 @@
     <div class="header">
       <h5 class="title">Aplikacion</h5>
       <div class="mainsearch">
-        <q-input standout="bg-white text-white" bg-color="grey" color="white" dense label="Cfare jeni duke kerkuar?" class="search text-white">
+        <q-input standout="bg-white text-white" bg-color="grey" color="white" dense readonly label="Po kerkoni dicka?" class="search text-white" @click="store.search = true">
           <template v-slot:prepend>
             <q-icon name="search" />
           </template>
@@ -20,17 +20,17 @@
     </div>
     <div class="kats">
       <div class="katsh">
-        <q-btn flat round dense color="primary" icon="chevron_left" v-if="index != 0" @click="add(-1);animateScrollBefore()"/>
+        <q-btn flat round dense class="text-fatal" icon="chevron_left" v-if="index != 0" @click="add(-1);animateScrollBefore()"/>
         <q-btn flat round dense disabled color="grey" icon="chevron_left" v-if="index == 0"/>
-        <p class="katnav text-blue">Kategorite</p>
-        <q-btn flat round dense color="primary" icon="chevron_right"  v-if="index != 1" @click="add(1);animateScrollNext()"/>
+        <p class="katnav text-fatal">Kategorite</p>
+        <q-btn flat round dense class="text-fatal" icon="chevron_right"  v-if="index != 1" @click="add(1);animateScrollNext()"/>
         <q-btn flat round dense disabled color="grey" icon="chevron_right"  v-if="index == 1"/>
       </div>
       <div class="katss">
         <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="visible" style="height: 120px; max-width: 3000px;" class="v-sc">
           <div class="row no-wrap">
             <div class="katsd relative-position" v-ripple.center:white v-for="el in kats" :key="el.id" :class="{extraMargined: el.id != 1}" @click="goto(el.link, el.title)">
-              <q-icon name="font_download" size="2rem"/>
+              <q-icon name="font_download" size="2rem" color="white"/>
               <q-separator />
               <q-separator />
               <p class="name text-white" style="text-align:center;">{{el.title}}</p>
@@ -39,8 +39,8 @@
         </q-scroll-area>
       </div>
     </div>
-    <div class="fit row no-wrap items-center justify-center">
-      <q-btn color="blue" dense text-color="white" class="extra-padded" label="Trego me shume" size="md" no-caps @click="moreKats = true"/>
+    <div class="fit row no-wrap items-center justify-center q-mb-lg">
+      <q-btn color="secondary" dense text-color="white" class="extra-padded" label="Trego me shume" size="md" no-caps @click="moreKats = true"/>
     </div>
     <q-dialog
         v-model="moreKats"
@@ -60,10 +60,10 @@
               <q-scroll-area :visible="visible" :thumb-style="thumbStyle" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2">
                 <div class="single" v-for="kat in kats" :key="kat.id">
                   <div class="lefty">
-                    <q-avatar color="primary" text-color="white">JA</q-avatar>
+                    <q-avatar color="primary" text-color="white">{{kat.title.charAt(0)}}</q-avatar>
                     <p class="text-p" style="padding: 0; margin: 0 0 0 15px;">{{kat.title}}</p>
                   </div>
-                  <q-btn round color="blue-6" icon="arrow_forward" unelevated @click="goto(kat.link, kat.title)"/>
+                  <q-btn round color="white" text-color="secondary" icon="arrow_forward" unelevated @click="goto(kat.link, kat.title)"/>
                 </div>
               </q-scroll-area>
             </div>
@@ -76,6 +76,7 @@
 <script>
 import { defineComponent } from 'vue'
 import { ref } from 'vue'
+import { useSearchStore } from 'stores/example-store.js'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -83,7 +84,9 @@ export default defineComponent({
 
     const position = ref(0)
     const scrollAreaRef = ref(null)
+    const store = useSearchStore()
     return {
+      store,
       visible: ref(false),
       moreKats: ref(false),
       kats: [
@@ -98,8 +101,8 @@ export default defineComponent({
           id: 2
         },
         {
-          title: "Teknologji",
-          link: "teknologji",
+          title: "Qendra Tregtare",
+          link: "qendra",
           id: 3
         },
         {
@@ -171,6 +174,16 @@ export default defineComponent({
           title: "Punesim",
           link: "punesim",
           id: 18
+        },
+        {
+          title: "Teknologji",
+          link: "teknologji",
+          id: 19
+        },
+        {
+          title: "Udhetime",
+          link: "udhetime",
+          id: 20
         }
       ],
       thumbStyle: {
@@ -195,7 +208,7 @@ export default defineComponent({
         scrollAreaRef.value.setScrollPosition('horizontal', position.value, 300)
       },
       goto(link, title){
-        this.$router.push({path: '/categories/', query: {routename: link, routetitle: title}})
+        this.$router.push({path: '/categories/'+link, query: {routename: link, routetitle: title}})
       }
     }
   },
@@ -234,7 +247,7 @@ export default defineComponent({
   padding: 20px 0 20px 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 .welc2{
@@ -248,6 +261,10 @@ export default defineComponent({
 .welti{
   color: white;
   font-size: 1.5em;
+}
+.welph{
+  background-image: url('../assets/main.png');
+  background-size: cover;
 }
 .kats{
   width: 100%;
@@ -287,9 +304,9 @@ export default defineComponent({
   align-items: center;
   border-radius: 10px;
   padding: 20px 0 0 0;
-  height: 120px;
+  height: 105px;
   width: 90px;
-  background-color: rgb(43, 43, 105);
+  background-color: #0d285a;
 }
 .extraMargined{
   margin-left: 15px;
@@ -330,7 +347,7 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   border-radius: 20px;
-  background-color: rgb(182, 180, 177);
+  background-color: rgba(226, 231, 243, 0.767);
   display: flex;
   flex-direction: column;
   justify-content: center;

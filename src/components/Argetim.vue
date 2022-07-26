@@ -136,7 +136,7 @@ export default {
   padding: 0px 5px 0 5px;
   height: 100px;
   width: 140px;
-  background-color: rgb(116, 15, 184);
+  background-color: #316bd8;
 }
 .extraMargined{
   margin-left: 15px;

@@ -17,7 +17,7 @@
       </div>
       <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="visible" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2" >
         <div class="row no-wrap">
-          <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}">
+          <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}" v-ripple>
             <q-img
               :src="image2"
               :ratio="16/9"
@@ -27,7 +27,7 @@
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Institucione arsimore</p>
             <q-space />
           </div>
-          <div class="conti shadow-3">        
+          <div class="conti shadow-3" v-ripple>        
             <q-img
               :src="image2"
               :ratio="16/9"
@@ -37,7 +37,7 @@
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Dekanati</p>
             <q-space />
           </div>
-          <div class="conti shadow-3">
+          <div class="conti shadow-3" v-ripple>
             <q-img
               :src="image2"
               :ratio="16/9"
@@ -47,7 +47,7 @@
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Institucione arsimore</p>
             <q-space />
           </div>
-          <div class="conti shadow-3" :style="{'margin-right': leftM + 'px'}" >
+          <div class="conti shadow-3" :style="{'margin-right': leftM + 'px'}" v-ripple>
             <q-img
               :src="image2"
               :ratio="16/9"
@@ -197,13 +197,14 @@ export default {
   height: 160px;
   padding: 0px 0px 0px 0px;
   border-radius: 20px;
-  background-color: #1768c4d5;
+  background-color: #316bd8;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   margin-left: 30px;
   transition: 0.5s;
+  position: relative;
 }
 .fan{
   font-size: 1rem;

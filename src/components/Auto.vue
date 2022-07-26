@@ -6,7 +6,7 @@
           <div class="conti shadow-3 q-mt-sm chain-fade-1-grad2" v-ripple.center:white>
             <q-avatar size="55px" font-size="50px" color="white" text-color="blue-9" icon="handyman" class=""/>
             <q-space/>
-            <p class="fan text-p text-gray-5" style="margin: 0; padding: 0;">Distributor & Koncesionare</p>
+            <p class="fan text-p text-gray-5 text-center" style="margin: 0; padding: 0;">Distributor & Koncesionare</p>
             <q-space/>
           </div>
           <div class="conti shadow-3 q-mt-sm chain-fade-2-grad2" v-ripple.center:white>        
@@ -18,25 +18,25 @@
           <div class="conti shadow-3 q-mt-sm chain-fade-3-grad2" v-ripple.center:white>
             <q-avatar size="55px" font-size="50px" color="white" text-color="blue-9" icon="handyman" class=""/>
             <q-space/>
-            <p class="fan text-p text-black" style="margin: 0; padding: 0;">Pjese te perdorura</p>
+            <p class="fan text-p text-black text-center" style="margin: 0; padding: 0;">Pjese te perdorura</p>
             <q-space/>
           </div>
-          <div class="conti shadow-3 q-mt-sm chain-fade-1-grad2" v-ripple.center:white>
+          <div class="conti shadow-3 q-mt-sm chain-fade-1-grad2" v-ripple.center:white @click="reroute('shesblej', 'Auto')">
             <q-avatar size="55px" font-size="50px" color="white" text-color="blue-9" icon="handyman" class=""/>
             <q-space/>
-            <p class="fan text-p text-black" style="margin: 0; padding: 0;">Shes blej</p>
+            <p class="fan text-p text-black text-center" style="margin: 0; padding: 0;">Shes blej</p>
             <q-space/>
           </div>
           <div class="conti shadow-3 q-mt-sm chain-fade-1-grad2" v-ripple.center:white>
             <q-avatar size="55px" font-size="50px" color="none" text-color="blue-9" icon="handyman" class=""/>
             <q-space/>
-            <p class="fan text-p text-black" style="margin: 0; padding: 0;">Dogana</p>
+            <p class="fan text-p text-black " style="margin: 0; padding: 0;">Dogana</p>
             <q-space/>
           </div>
           <div class="conti shadow-3 q-mt-sm q-mr-sm chain-fade-1-grad2" v-ripple.center:white>
             <q-avatar size="55px" font-size="50px" color="none" text-color="blue-9" icon="handyman" class=""/>
             <q-space/>
-            <p class="fan text-p text-black" style="margin: 0; padding: 0;">Kontrolli fizik</p>
+            <p class="fan text-p text-black text-center" style="margin: 0; padding: 0;">Kontrolli fizik</p>
             <q-space/>
           </div>
         </div>
@@ -106,6 +106,11 @@ export default {
       onScroll(){
         return;
       }
+    }
+  },
+  methods: {
+    reroute(name,title){
+      this.$router.push({path: '/categories/subcategory', query: {routename: name, routetitle: title}})
     }
   }
 }

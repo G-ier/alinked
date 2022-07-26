@@ -141,7 +141,7 @@ export default {
   width: 220px;
   padding: 17px 30px 17px 30px;
   border-radius: 20px;
-  background-color: #1768c4d5;
+  background-color: #316bd8;
   position: relative;
   display: flex;
   justify-content: space-evenly;

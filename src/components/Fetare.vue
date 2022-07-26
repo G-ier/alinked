@@ -17,7 +17,7 @@
         <div class="column no-wrap">
           <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}" v-ripple.center:white>
 
-            <q-avatar size="50px" font-size="35px" color="teal" text-color="white" icon="directions" />
+            <q-avatar size="50px" font-size="35px" color="secondary" text-color="white" icon="directions" />
             <q-space />
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Komuniteti mysliman</p>
             <q-space />
@@ -25,11 +25,11 @@
           <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}" v-ripple.center:white> 
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Komuniteti katolik</p>
             <q-space />
-            <q-avatar size="50px" font-size="35px" color="teal" text-color="white" icon="directions" />
+            <q-avatar size="50px" font-size="35px" color="secondary" text-color="white" icon="directions" />
             <q-space />
           </div>
           <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}" v-ripple.center:white>
-            <q-avatar size="50px" font-size="35px" color="teal" text-color="white" icon="directions" />
+            <q-avatar size="50px" font-size="35px" color="secondary" text-color="white" icon="directions" />
             <q-space />
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Komuniteti ortodoks </p>
             <q-space />
@@ -37,7 +37,7 @@
           <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}" v-ripple.center:white> 
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Komuniteti katolik</p>
             <q-space />
-            <q-avatar size="50px" font-size="35px" color="teal" text-color="white" icon="directions" />
+            <q-avatar size="50px" font-size="35px" color="secondary" text-color="white" icon="directions" />
             <q-space />
           </div>
         </div>
@@ -164,12 +164,12 @@ export default {
     width: 100%;
 }
 .conti{
-  width: 230px;
+  width: 250px;
   height: 90px;
   position: relative;
   padding: 0px 0px 0px 10px;
   border-radius: 20px;
-  background-color: #1768c4d5;
+  background-color: #316bd8;
   display: flex;
   justify-content: flex-start;
   align-items: center;

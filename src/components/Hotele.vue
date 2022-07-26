@@ -3,22 +3,22 @@
     <div class="kats" v-touch-swipe="onScroll">
       <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="visible" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2" >
         <div class="row no-wrap">
-          <div class="conti" :style="{'margin-left': leftM + 'px'}">
+          <div class="conti" :style="{'margin-left': leftM + 'px'}" v-ripple.center:white>
             <q-space/>
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Restorante</p>
             <q-space/>
           </div>
-          <div class="conti">        
+          <div class="conti" v-ripple.center:white>        
             <q-space/>
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Hotele</p>
             <q-space/>
           </div>
-          <div class="conti">
+          <div class="conti" v-ripple.center:white>
             <q-space/>
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Bars</p>
             <q-space/>
           </div>
-          <div class="conti" :style="{'margin-right': leftM + 'px'}">
+          <div class="conti" :style="{'margin-right': leftM + 'px'}" v-ripple.center:white>
             <q-space/>
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Impiante sportive</p>
             <q-space/>
@@ -173,11 +173,12 @@ export default {
   width: 130px;
   padding: 17px 30px 17px 30px;
   border-radius: 20px;
-  background-color: #1768c4d5;
+  background-color: #316bd8;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   margin-left: 30px;
+  position: relative;
 }
 .fan{
     font-size: 1rem;

@@ -4,25 +4,25 @@
       <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="visible" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2" >
         <div class="row no-wrap">
           <div class="conti" :style="{'margin-left': leftM + 'px'}" :class="{'active-ting': index==0}">
-            <q-avatar v-ripple.center:white size="55px" font-size="42px" color="teal" text-color="white" icon="directions" />
+            <q-avatar v-ripple.center:white size="55px" font-size="42px" color="secondary" text-color="white" icon="directions" />
             <q-space/>
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Impiante sportive</p>
             <q-space/>
           </div>
           <div class="conti" :class="{'active-ting': index==1}">
-            <q-avatar v-ripple.center:white size="55px" font-size="42px" color="teal" text-color="white" icon="directions" />
+            <q-avatar v-ripple.center:white size="55px" font-size="42px" color="secondary" text-color="white" icon="directions" />
             <q-space/>
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Ekipe elitare</p>
             <q-space/>
           </div>
           <div class="conti" :class="{'active-ting': index==2}">
-            <q-avatar v-ripple.center:white size="55px" font-size="42px" color="teal" text-color="white" icon="directions" />
+            <q-avatar v-ripple.center:white size="55px" font-size="42px" color="secondary" text-color="white" icon="directions" />
             <q-space/>
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Impiante sportive</p>
             <q-space/>
           </div>
           <div class="conti" :style="{'margin-right': leftM + 'px'}" :class="{'active-ting': index==3}">
-            <q-avatar v-ripple.center:white size="55px" font-size="42px" color="teal" text-color="white" icon="directions" />
+            <q-avatar v-ripple.center:white size="55px" font-size="42px" color="secondary" text-color="white" icon="directions" />
             <q-space/>
             <p class="fan text-p text-white" style="margin: 0; padding: 0;">Impiante sportive</p>
             <q-space/>
@@ -37,7 +37,7 @@
     </div>
     
 
-    <q-btn unelevated rounded color="primary" label="Sporti" style="margin-top: 20px; margin-bottom: 15px"><q-icon name="search" style="padding-left: 10px" /></q-btn>
+    <q-btn unelevated rounded color="primary" style="width: 70%; margin-top: 10px; margin-bottom: 15px"><q-space/><span>Sporti</span><q-space/><q-icon name="search" /></q-btn>    
     
     <div class="imagerow">
       <q-img
@@ -178,7 +178,7 @@ export default {
   width: 250px;
   padding: 17px 30px 17px 30px;
   border-radius: 20px;
-  background-color: #1768c4d5;
+  background-color: #316bd8;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

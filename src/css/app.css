@@ -1,4 +1,13 @@
 /* app global css */
+
+@font-face {
+    font-family: popreg;
+    src: url(../assets/Poppins-Regular.ttf);
+}
+.popreg{
+    font-family: popreg;
+}
+
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
@@ -89,10 +98,50 @@
 .fullwidth{
     width: 100%;
 }
+.fullheight{
+    height: 100%;
+}
 
 .bg-darkblue{
     background-color: rgba(18, 22, 83, 0.945);
 }
 .text-darkblue{
     color: rgba(18, 22, 83, 0.945);
+}
+
+.b2{
+    border-radius: 15px;
+}
+
+.right-b2{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+html, body, a {
+    font-family: popreg;
+}
+
+.custom-black{
+    color: #242424;
+}
+
+.main-blue-bg{
+    background-color: #316bd8;
+}
+.main-blue{
+    color: #316bd8;
+}
+.width90{
+    width: 90%;
+}
+.columny{
+    display: flex;
+    flex-direction: column;
+}
+.text-fatal{
+    color:#0d285a;
+}
+.posab{
+    position: absolute;
 }

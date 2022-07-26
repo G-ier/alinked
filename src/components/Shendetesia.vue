@@ -9,19 +9,19 @@
     <q-btn unelevated rounded color="primary" label="Shendetesia" style="margin-top: 20px; margin-bottom: 15px"><q-icon name="search" style="padding-left: 10px" /></q-btn>
     <div class="kats">
       <div class="type">
-          <q-avatar v-ripple.center:white size="85px" font-size="42px" color="teal" text-color="white" icon="directions" />
+          <q-avatar v-ripple.center:white size="85px" font-size="42px" color="secondary" text-color="white" icon="directions" />
           <p class="text-p">Spitale</p>
       </div>
       <div class="type">
-          <q-avatar v-ripple.center:white size="85px" font-size="42px" color="teal" text-color="white" icon="directions" />
+          <q-avatar v-ripple.center:white size="85px" font-size="42px" color="secondary" text-color="white" icon="directions" />
           <p class="text-p">Poliklinika</p>
       </div>
       <div class="type">
-          <q-avatar v-ripple.center:white size="85px" font-size="42px" color="teal" text-color="white" icon="directions" />
+          <q-avatar v-ripple.center:white size="85px" font-size="42px" color="secondary" text-color="white" icon="directions" />
           <p class="text-p">Urgjenca</p>
       </div>
       <div class="type">
-          <q-avatar v-ripple.center:white size="85px" font-size="42px" color="teal" text-color="white" icon="directions" />
+          <q-avatar v-ripple.center:white size="85px" font-size="42px" color="secondary" text-color="white" icon="directions" />
           <p class="text-p">Klinika</p>
       </div>
     </div>
@@ -102,5 +102,6 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 </style>

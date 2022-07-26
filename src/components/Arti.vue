@@ -138,7 +138,7 @@ export default {
   height: 120px;
   padding: 17px 30px 17px 30px;
   border-radius: 10px;
-  background-color: #1768c4d5;
+  background-color: #316bd8;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

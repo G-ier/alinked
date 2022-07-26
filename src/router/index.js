@@ -1,6 +1,7 @@
 import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
+import {getCurrentUser} from "boot/firebase"
 
 /*
  * If not building with SSR mode, you can
@@ -25,6 +26,35 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.MODE === 'ssr' ? void 0 : process.env.VUE_ROUTER_BASE)
   })
+
+  Router.beforeEach(async (to, from, next) => {
+    // See if any of the matched routes has meta "requiresAuth"
+    if (to.matched.some(route => route.meta.requiresAuth)) {
+      // Yes this route requires authentication. See if the user is authenticated.
+      if (await getCurrentUser()) {
+        // User is authenticated, we allow access.
+        next();
+      } else {
+        // User is not authenticated. We can redirect her to
+        // our login page. Or wherever we want.
+        next("/login");
+      }
+    } else if(to.matched.some(route => route.meta.vorsicht)){
+      if (await getCurrentUser()) {
+        // User is authenticated, we send to dashboard.
+        next("/dashboard");
+      } else {
+        // User is not authenticated. We can redirect her to
+        // our login page. Or wherever we want.
+        console.log("Already logged in...")
+        next();
+      }
+    } else {
+      next();
+    }
+
+    
+  });
 
   return Router
 })

@@ -177,7 +177,7 @@ export default {
   height: 80px;
   padding: 0px 25px 0px 20px;
   border-radius: 10px;
-  background-color: #1768c4d5;
+  background-color: #316bd8;
   display: flex;
   position: relative;
   justify-content: flex-start;

@@ -24,7 +24,8 @@ module.exports = configure(function (ctx) {
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
     boot: [
       'i18n',
-      'axios',
+      'axios', 
+      'firebase'
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
@@ -85,7 +86,12 @@ module.exports = configure(function (ctx) {
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
     framework: {
-      config: {},
+      config: {
+        brand: {
+          primary: '#316bd8',
+          secondary: '#316bd8'
+        }
+      },
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
@@ -98,7 +104,7 @@ module.exports = configure(function (ctx) {
       directives: ['Ripple'],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Notify','LocalStorage','SessionStorage']
     },
 
     // animations: 'all', // --- includes all animations

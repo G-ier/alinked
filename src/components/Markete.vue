@@ -150,7 +150,7 @@ export default {
   height: 160px;
   padding: 0px 0px 0px 0px;
   border-radius: 20px;
-  background-color: #1768c4d5;
+  background-color: #316bd8;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

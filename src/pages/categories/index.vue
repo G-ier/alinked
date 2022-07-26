@@ -3,7 +3,7 @@
     <div class="headerdis shadow-3">
       <div class="totaled">
         <q-icon name="arrow_back_ios_new" size="xs" @click="gotoHome"/>
-        <p class="text-h5" style="margin: 0; padding: 0;">{{title}}</p>
+        <p class="text-h5 custom-black" style="margin: 0; padding: 0;">{{title}}</p>
         <q-icon name="arrow_back_ios_new" style="z-index: -1000; opacity: 0"/>
       </div>
     </div>
@@ -26,6 +26,8 @@
     <Markete v-if="route=='markete'" />
     <Arti v-if="route=='arti'" />
     <Pun v-if="route=='punesim'" />
+    <Qendra v-if="route=='qendra'" />
+    <Udhetime v-if="route=='udhetime'" />
   </q-page>
 </template>
 
@@ -47,6 +49,8 @@ import Libri from '../../components/Libri.vue'
 import Markete from '../../components/Markete.vue'
 import Arti from '../../components/Arti.vue'
 import Pun from '../../components/Punesim.vue'
+import Qendra from '../../components/Qendra.vue'
+import Udhetime from '../../components/Udhetime.vue'
  
 export default defineComponent({
   name: 'Category page',
@@ -66,7 +70,9 @@ export default defineComponent({
     Libri,
     Markete,
     Arti,
-    Pun
+    Pun,
+    Qendra,
+    Udhetime
 
   } ,
   setup () {
@@ -102,7 +108,7 @@ export default defineComponent({
 .headerdis{
   width: 100%;
   height: 17vh;
-  background-color: rgb(185, 185, 185);
+  background-color: rgb(226, 226, 226);
   border-bottom-left-radius: 120px;
   border-bottom-right-radius: 120px;
   display: flex;

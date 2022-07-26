@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('counter', {
+export const useSearchStore = defineStore('search', {
   state: () => ({
     counter: 0,
+    search: false
   }),
   getters: {
     doubleCount: (state) => state.counter * 2,

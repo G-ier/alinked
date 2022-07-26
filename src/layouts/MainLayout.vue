@@ -8,23 +8,23 @@
     <q-footer class="bg-white text-primary">
         <div id="main-end" style="background: rgba(0,0,0,0);">
           <div class="btn-over upper-hand">
-             <q-btn push color="blue" round icon="search" class="upper-hand" @click="search = true"/>
+             <q-btn push color="secondary" round icon="search" class="upper-hand" @click="store.search = true"/>
           </div>
           <q-tabs
             v-model="tab"
             no-caps
             inline-label
-            class="bg-white text-blue shadow-2 second-end"
+            class="bg-white main-blue shadow-2 second-end"
           >
-            <q-tab name="home" icon="home" @click="goto('/')"/>
-            <q-tab name="mails" icon="mail" />
-            <q-tab name="alarms" icon="alarm" />
-            <q-tab name="movies" icon="movie" />
+            <q-route-tab name="home" icon="home" to="/"/>
+            <q-route-tab name="mails" icon="notifications" to="/notifications" />
+            <q-route-tab name="alarms" icon="sms" />
+            <q-route-tab name="movies" icon="person" to="/dashboard"/>
           </q-tabs>
         </div>
       </q-footer>
       <q-dialog
-        v-model="search"
+        v-model="store.search"
         persistent
         :maximized="maximizedToggle"
         transition-show="slide-up"
@@ -32,19 +32,29 @@
       >
         <div class="fuller">
           <div class="header">
-            <q-icon name="arrow_back_ios_new" @click="search = false"/>
+            <q-icon name="arrow_back_ios_new" @click="store.search = false"/>
           </div>
           <div class="search">
-            <q-input standout="bg-white text-white" bg-color="grey" color="white" dense label="Cfare jeni duke kerkuar?" class="search text-white">
-              <template v-slot:prepend>
+            <q-input standout="bg-white text-white" bg-color="grey" color="white" dense label="Cfare jeni duke kerkuar?" v-model="search_string" class="search text-white" @keypress="searchdb">
+              <template v-slot:append>
                 <q-icon name="search" />
               </template>
             </q-input>
           </div>
-          <div class="kerkimet">
-            <h5 class="title">Kerkimet</h5>
+          <div class="kerkimet" v-if="search_modus==false">
+            <h5 class="title">Me te kerkuarat</h5>
             <div class="results">
               <p class="result">Search_1</p>
+              <p class="result">Search_2</p>
+              <p class="result">Search_3</p>
+              <p class="result">Search_4</p>
+              <p class="result">Search_5</p>
+            </div>
+          </div>
+          <div class="kerkimet" v-if="search_modus==true">
+            <h5 class="title">Rezultate</h5>
+            <div class="results">
+              <p class="result" v-for="result in results" :key="result.uuid" style="curson: pointer;">{{result.name}}</p>
             </div>
           </div>
         </div>
@@ -55,6 +65,9 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import { useSearchStore } from 'stores/example-store.js'
 
 const linksList = [
   {
@@ -109,14 +122,19 @@ export default defineComponent({
   },
   data(){
     return{
-      prevHeight: 0
+      prevHeight: 0,
+      search_string: "",
+      results: [{uuid: 1, name: ""}],
+      search_modus: false
     }
   },
   setup () {
     const leftDrawerOpen = ref(false)
+    const store = useSearchStore()
 
     return {
       essentialLinks: linksList,
+      store,
       leftDrawerOpen,
       fabLeft: ref(true),
       fabCenter: ref(true),
@@ -145,6 +163,20 @@ export default defineComponent({
     afterEnter(element) {
       element.style.height = 'auto';
     },
+    async searchdb(){
+      setTimeout(async () => {
+        this.search_modus = true;
+        const results = await firebase.firestore().collection("products").where('name', '>=', this.search_string).where('name', '<=', this.search_string + '\uf8ff').get()
+        var rlist = []
+        results.forEach(doc => {
+          console.log(doc.data())
+          rlist.push(doc.data())
+          //doc.data()
+        });
+        console.log(results)
+        this.results = rlist.slice(0,5)
+      },1500)
+    }
   },
 })
 </script>
@@ -160,6 +192,9 @@ export default defineComponent({
  }
 #main-end{
   width: 100%;
+  height: 50px;
+  position: relative;
+  bottom: 26px;
   display: flex;
   flex-direction: column;
   justify-content: center;

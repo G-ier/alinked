@@ -7,13 +7,13 @@
         />
     </div>
 
-    <q-btn unelevated rounded color="primary" style="width: 70%; margin-top: 20px; margin-bottom: 15px"><q-space/><span>Imobiliare</span><q-space/><q-icon name="search" /></q-btn>    
+    <q-btn unelevated rounded color="primary" style="width: 70%; margin-top: 20px; margin-bottom: 35px"><q-space/><span>Imobiliare</span><q-space/><q-icon name="search" /></q-btn>    
     
     <div class="kats">
         
         <div class="conti shadow-3" v-ripple.center:white>
             <q-space/>
-            <p class="fan text-p text-blue-10" style="margin: 0; padding: 0;">Jep-Marr me qera</p>
+            <p class="fan text-p main-blue-10" style="margin: 0; padding: 0;">Jep-Marr me qera</p>
             <q-avatar size="45px" font-size="45px" color="white" text-color="blue-10" icon="handshake" class=" q-ml-sm"/>
         </div>
         
@@ -22,7 +22,7 @@
         
         <div class="conti-2 shadow-3" v-ripple.center:white>
             <q-avatar size="45px" font-size="45px" color="white" text-color="blue-10" icon="handshake" class=" q-mr-sm"/>
-            <p class="fan text-p text-blue-10" style="margin: 0; padding: 0;">Shes-Blej</p>
+            <p class="fan text-p main-blue-10" style="margin: 0; padding: 0;">Shes-Blej</p>
             <q-space/>
         </div>
         
@@ -32,7 +32,7 @@
         
         <div class="conti shadow-3" v-ripple.center:white>
             <q-space/>
-            <p class="fan text-p text-blue-10" style="margin: 0; padding: 0;">Agjensi imobiliare</p>
+            <p class="fan text-p main-blue-10" style="margin: 0; padding: 0;">Agjensi imobiliare</p>
             <q-avatar size="45px" font-size="45px" color="white" text-color="blue-10" icon="local_shipping" class=" q-ml-sm"/>
         </div>
         
