@@ -2,7 +2,8 @@
   <q-page class="flex animated-fade" style="min-height: 400px">
     <div class="headerdis shadow-3">
       <div class="totaled">
-        <q-icon name="arrow_back_ios_new" size="xs" class="custom-black" @click="gotoHome('auto', 'Auto')"/>
+        <q-icon name="arrow_back_ios_new" size="xs" class="custom-black" @click="gotoHome('auto', 'Auto')" v-if="route=='shesblej'"/>
+        <q-icon name="arrow_back_ios_new" size="xs" class="custom-black" @click="$router.go(-1)" v-if="route!='shesblej'"/>
         <p class="text-h5 custom-black" style="margin: 0; padding: 0;">{{title}}</p>
         <q-icon name="arrow_back_ios_new" style="z-index: -1000; opacity: 0"/>
       </div>
@@ -11,17 +12,20 @@
       <q-spinner-gears size="50px" color="primary" />
     </q-inner-loading>
     <Shesblej v-if="route=='shesblej'" />
+    <ListPlaces v-if="route=='list-places'" :title="title" :route="route" />
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 import Shesblej from '../../../components/Auto_shesblej.vue'
+import ListPlaces from '../../../components/ListPlaces.vue'
  
 export default defineComponent({
   name: 'Category page',
   components:{
-    Shesblej
+    Shesblej,
+    ListPlaces
   } ,
   setup () {
     return {

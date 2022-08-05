@@ -111,7 +111,11 @@ export default {
   methods: {
     reroute(name,title){
       this.$router.push({path: '/categories/subcategory', query: {routename: name, routetitle: title}})
+    },
+    goto(link, route, title){
+      this.$router.push({path: link, query: {routename: route, routetitle: title}})
     }
+  
   }
 }
 </script>

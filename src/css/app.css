@@ -135,6 +135,12 @@ html, body, a {
 .width90{
     width: 90%;
 }
+.width80{
+    width: 60%;
+}
+.width95{
+    width: 95%;
+}
 .columny{
     display: flex;
     flex-direction: column;

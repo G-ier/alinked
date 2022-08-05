@@ -14,8 +14,8 @@
       <div class="katss">
         <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="false" style="height: 120px; max-width: 3000px;" class="v-sc">
           <div class="row no-wrap">
-            <div class="katsd relative-position" v-ripple.center:white v-for="el in kats" :key="el.id" :class="{extraMargined: el.id != 1}" @click="goto(el.link)">
-              <q-icon name="font_download" color="white" size="2rem"/>
+            <div class="katsd relative-position" v-ripple.center:white v-for="el in kats" :key="el.id" :class="{extraMargined: el.id != 1}" @click="goto(el.link, 'list-places', el.title)">
+              
 
               <p class="name text-white" style="text-align:center; margin: 0;padding: 0;">{{el.title}}</p>
             </div>
@@ -35,33 +35,33 @@ export default {
       image,
       kats: [
         {
-          title: "Arsimi",
-          link: "argetim",
+          title: "Jeta e nates",
+          link: "/categories/subcategory/",
           id: 1
         },
         {
-          title: "Turizem & Kulture",
-          link: "argetim",
+          title: "Kende lojrash",
+          link: "/categories/subcategory/",
           id: 2
         },
         {
-          title: "Teknologji",
-          link: "argetim",
+          title: "Kinema",
+          link: "/categories/subcategory/",
           id: 3
         },
         {
-          title: "Auto",
-          link: "argetim",
+          title: "Parqe",
+          link: "/categories/subcategory/",
           id: 4
         },
         {
-          title: "Argetim & Shplodhje",
-          link: "argetim",
+          title: "Sheshe",
+          link: "/categories/subcategory/",
           id: 5
         },
         {
-          title: "Auto_3",
-          link: "argetim",
+          title: "Teatro",
+          link: "/categories/subcategory/",
           id: 6
         }
       ],
@@ -72,6 +72,11 @@ export default {
         width: '0px',
         opacity: 0
       }
+    }
+  },
+  methods:{
+    goto(link, route, title){
+      this.$router.push({path: link, query: {routename: route, routetitle: title}})
     }
   }
 }

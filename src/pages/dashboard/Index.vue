@@ -216,7 +216,7 @@ export default defineComponent({
         this.$q.notify({message: 'Sign Out i suksesshem.', type: 'positive'})
         this.$q.localStorage.remove('account')
         this.$q.localStorage.remove('credentials')
-        window.location.reload();
+        // window.location.reload();
       })
       .catch(error =>  console.log('error',error))
     },

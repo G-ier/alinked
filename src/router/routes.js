@@ -11,6 +11,8 @@ const routes = [
       { path: '/categories/:routename', component: () => import('src/pages/categories/index.vue'),meta: { transition: 'slide-left' } },
       { path: '/categories/subcategory/', component: () => import('src/pages/categories/subcategory/index.vue'),meta: { transition: 'slide-left' } },
       { path: '/manage', component: () => import('src/pages/dashboard/Manage.vue'), meta: { requiresAuth: true, elevatedAccess: true }},
+      { path: '/exp', component: () => import('src/pages/Exp.vue')},
+      { path: '/maps', component: () => import('src/pages/MapsImp.vue')}
     ]
   },
 

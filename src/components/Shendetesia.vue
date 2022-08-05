@@ -68,6 +68,11 @@ export default {
         }
       ],
     }
+  },
+  methods:{
+    goto(link, route, title){
+      this.$router.push({path: link, query: {routename: route, routetitle: title}})
+    }
   }
 }
 </script>
