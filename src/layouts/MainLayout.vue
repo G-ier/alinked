@@ -18,7 +18,7 @@
           >
             <q-route-tab name="home" icon="home" to="/"/>
             <q-route-tab name="mails" icon="notifications" to="/notifications" />
-            <q-route-tab name="alarms" icon="sms" />
+            <q-route-tab name="alarms" icon="sms" to="/directmsg"/>
             <q-route-tab name="movies" icon="person" to="/dashboard"/>
           </q-tabs>
         </div>

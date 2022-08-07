@@ -2,7 +2,7 @@
   <q-page class="flex animated-fade">
     <div class="main">
         <div class="fr1 q-py-xl">
-            <h4 class="text-h4 popreg main-blue q-pa-none q-ma-none" >Forma e regjistrimit</h4>
+            <h4 class="text-h4 popreg main-blue q-pa-none q-ma-none" >Llojet e llogarive</h4>
         </div>
         <div class="fr2 q-mb-md">
             <q-tabs
@@ -11,9 +11,9 @@
                 dense
                 align="justify"
             >
-                <q-tab class="text-primary" name="normal" icon="shopping_cart" label="Perdorues" />
+                <q-tab class="text-primary" name="normal" icon="shopping_cart" label="Normal" />
+                <q-tab class="text-primary" name="premium" icon="admin_panel_settings" label="Premium" />
                 <q-tab class="text-primary" name="seller" icon="store" label="Biznes" />
-                <q-tab class="text-primary" name="institution" icon="assured_workload" label="Institucion" />
             </q-tabs>
         </div>
         <div class="fr2 q-mb-md animated-fade" v-if="tab=='normal'">
@@ -63,9 +63,10 @@
                 <div class="q-mb-lg fullwidth">
                     <p class="text-black">Detaje plotesuese</p>
                     <q-input class="q-mb-lg fullwidth" standout="bg-grey text-white" v-model="qyteti" label="Qyteti" hint="Opsionale" />
+                    <q-input class="q-mb-lg fullwidth" standout="bg-grey text-white" v-model="marka"  label="Makra" hint="Opsionale" />
                     <q-checkbox v-model="privat" label="Biznes Privat" hint="Opsionale"/>
                     <q-checkbox v-model="publik" label="Biznes Publik" hint="Opsionale"/>
-                    <q-input class="q-mb-lg fullwidth" standout="bg-grey text-white" v-model="marka"  label="Makra" hint="Opsionale" />
+                    
                 </div>
               </q-step>
 
@@ -96,7 +97,7 @@
               </template>
             </q-stepper>
         </div>
-        <div class="fr2 q-mb-md animated-fade" v-if="tab=='institution'">
+        <div class="fr2 q-mb-md animated-fade" v-if="tab=='premium'">
           <q-stepper
             v-model="steper"
             ref="stepper"
@@ -116,42 +117,11 @@
               <q-step
                 :name="2"
 
-                icon="create_new_folder"
+                icon="pin_drop"
                 :done="steper > 2"
               >
-                <q-tree
-                  :nodes="simple"
-                  node-key="label"
-                  selected-color="primary"
-                  v-model:selected="selected"
-                  accordion
-                  no-connectors
-                />
-              </q-step>
-
-              <q-step
-                :name="3"
-
-                icon="pin_drop"
-                :done="steper > 3"
-              >
                 <div class="q-mb-lg fullwidth">
-                    <p class="text-black">Detaje plotesuese</p>
-                    <q-input class="q-mb-lg fullwidth" filled v-model="qyteti" label="Qyteti" dense hint="Opsionale" />
-                    <q-checkbox v-model="privat" label="Institucion Privat" hint="Opsionale"/>
-                    <q-checkbox v-model="publik" label="Institucion Publik" hint="Opsionale"/>
-                    <q-input class="q-mb-lg fullwidth" filled v-model="marka"  label="Makra" dense hint="Opsionale" />
-                </div>
-              </q-step>
-
-              <q-step
-                :name="4"
-
-                icon="pin_drop"
-                :done="steper > 4"
-              >
-                <div class="q-mb-lg fullwidth">
-                    <div class="row fullwidth"><p class="text-p popreg text-grey q-ml-xs">Lokacioni juaj ekzakt</p></div>
+                    <div class="row fullwidth"><p class="text-p popreg text-grey q-ml-xs">Lokacioni juaj ekzakt - Opsionale</p></div>
                     <div class="fullwidth row justify-between">
                         <q-space/>
                         <q-btn flat color="primary" dense label="Perzgjidh ne harte" @click="openmap"/>
@@ -164,8 +134,8 @@
 
               <template v-slot:navigation>
                 <q-stepper-navigation>
-                  <q-btn @click="$refs.stepper.next()" color="primary" label="Vazhdo" v-if="steper < 4" />
-                  <q-btn @click="register" color="primary" label="Mbaro" v-if="steper == 4" />
+                  <q-btn @click="$refs.stepper.next()" color="primary" label="Vazhdo" v-if="steper < 2" />
+                  <q-btn @click="register" color="primary" label="Mbaro" v-if="steper == 2" />
                   <q-btn v-if="steper > 1" flat color="primary" @click="$refs.stepper.previous()" label="Back" class="q-ml-sm" />
                 </q-stepper-navigation>
               </template>
@@ -360,11 +330,16 @@ export default defineComponent({
             return
         }
         if(this.markerinfo.set == false){
-          this.$q.notify({
+          if(this.tab == 'premium'){
+            console.log('cool')
+          } else {
+            this.$q.notify({
               message: 'Vendosni pozicionin tuaj gjeografik.',
               type: 'negative',
               position: 'top'
             })
+            return;
+          }
         }
         this.btnload = true;
         try{
@@ -387,7 +362,7 @@ export default defineComponent({
                 "uuid": uuid
             }
             await firebase.firestore().collection("accounts").doc(this.email).set(data)
-            if(this.wantsToBe == 'institution' ||this.wantsToBe == 'seller'){
+            if(this.wantsToBe == 'premium' ||this.wantsToBe == 'seller'){
               await firebase.firestore().collection("places").doc(this.product.name).set({
                 uuid: uuid,
                 name: this.username,
@@ -397,7 +372,8 @@ export default defineComponent({
                 marka: this.marka,
                 privat: this.privat,
                 publik: this.publik,
-                location: new firebase.firestore.GeoPoint(this.markerinfo.coordinate.lat, this.markerinfo.coordinate.lng)
+                location: new firebase.firestore.GeoPoint(this.markerinfo.coordinate.lat, this.markerinfo.coordinate.lng),
+                owneremail: this.email
               })
             }
             this.$q.localStorage.set("account", data)

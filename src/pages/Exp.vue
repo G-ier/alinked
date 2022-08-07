@@ -30,13 +30,7 @@
         <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true"/>
         <q-icon name="logout" size="sm"/>
       </div>
-      <div class="width90 row">
-        <div id="saleschart" class="row main-blue-bg">
-          <p class="popreg text-white text-h5">Sales</p>
-          <q-space/>
-          <p class="popreg text-white text-h5">{{data.sales}}</p>
-        </div>
-      </div>
+      
       <div class="width90 row q-my-md">
         <div class="product col q-mr-lg main-blue-bg" v-ripple @click="newproduct = true">
           <p class="popreg text-white">Shto produkt</p>
@@ -65,13 +59,6 @@
         <q-space/>
         <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true"/>
         <q-icon name="logout" size="sm"/>
-      </div>
-      <div class="width90 row">
-        <div id="saleschart" class="row main-blue-bg">
-          <p class="popreg text-white text-h5">Sales</p>
-          <q-space/>
-          <p class="popreg text-white text-h5">{{data.sales}}</p>
-        </div>
       </div>
       <div class="width90 row q-my-md">
         <div class="product col q-mr-lg main-blue-bg" v-ripple @click="newproduct = true">
@@ -133,7 +120,7 @@
       <q-card class="bg-white text-white">
         <q-bar>
           <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
+          <q-btn dense flat icon="close" v-close-popup @click="destroymap">
             <q-tooltip class="bg-white text-primary">Close</q-tooltip>
           </q-btn>
         </q-bar>
@@ -151,13 +138,13 @@
                   v-model="tabprofile"
                   class="text-primary q-mb-lg fullheight fullwidth"
               >
-                  <q-tab name="data" icon="person" label="Profili" />
+                  <q-tab name="data" icon="person" label="Profili" @click="destroymap"/>
                   <q-tab name="map" icon="pin_drop" label="Lokacioni" @click="listener"/>
               </q-tabs>
               <q-tab-panels v-model="tabprofile" animated>
                 <q-tab-panel name="data" class="bg-white">
-                  <q-input filled v-model="data.name" class="q-mb-lg" label="Emri"/>
-                  <q-input filled v-model="data.email" class="q-mb-lg" label="Email" />
+                  <q-input filled v-model="data.name" class="q-mb-lg" label="Emri" error-message="Korigjoni fushen" :error="namePError"/>
+                  <q-input filled v-model="data.email" hint="Momentalisht i pandryshueshem" class="q-mb-lg" label="Email" />
                 </q-tab-panel> 
                 <q-tab-panel name="map" class="bg-white fullwidth">
                   <div id="mapDivRef" ref="mapDivRef">
@@ -167,7 +154,7 @@
               </q-tab-panels>
               <q-space/>
               <div class="fullwidth row justify-end">
-                <q-btn dense color="primary" no-caps label="Ndrysho">
+                <q-btn dense color="primary" no-caps label="Ndrysho" @click="changeData">
                 </q-btn>
               </div>
             </div>
@@ -415,6 +402,36 @@
         </q-card-section>
       </q-card>
     </q-dialog>
+    <q-dialog v-model="successP">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Sukses ne krijim</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          Produkti juaj eshte krijuar dhe eshte shtuar ne kategorine tuaj te zgjedhur.
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="OK" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="successChange">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Ndryshimi u krye</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          Te dhenat tuaja te reja jane ndermarre dhe mund te shihen.
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="OK" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -441,6 +458,9 @@ export default defineComponent({
       product: {
         name: { required }, // Matches this.contact.email
         price: { numeric }
+      },
+      data: {
+        name: {required, minLength: minLength(3)}
       },
       nr_njerez: {numeric},
       nr_femij: {numeric},
@@ -504,6 +524,13 @@ export default defineComponent({
           });
 
           this.map = newMap;
+          this.map.addMarker({
+            coordinate:{
+                  lat: this.data.location.latitude,
+                  lng: this.data.location.longitude
+              },
+              title: "Pozicioni jote"
+          })
           console.log("Map")
           console.log(this.map)
         },1000)
@@ -522,8 +549,15 @@ export default defineComponent({
               },
               title: "Pozicioni jote"
           })
+          this.coord.lat = data.latitude
+          this.coord.lng = data.longitude
         })
       },1100)
+    },
+    async destroymap(){
+      this.map.destroy()
+      this.map = null
+      this.marker = null
     },
     async createproduct(){
       // Check forms
@@ -578,6 +612,27 @@ export default defineComponent({
         profesioni: this.profesioni,
         contract: this.contract,
       })
+      this.newproduct = false
+      this.successP = true
+    },
+    async changeData(){
+      await this.v$.data.name.$touch()
+      const result = await this.v$.data.name.$validate()
+      console.log(result)
+      if (!result) {
+        
+        this.$q.notify({
+          message: 'Te dhenat jane plotesuar gabim.',
+          type: 'negative',
+          position: 'top'
+        })
+        return
+      }
+      await firebase.firestore().collection('accounts').doc(this.data.email).update({
+        name: this.data.name,
+        location: new firebase.firestore.GeoPoint(this.coord.lat, this.coord.lng)
+      })
+      this.successChange = true
     }
   },
   computed: {
@@ -654,6 +709,7 @@ export default defineComponent({
   data(){
     const $q = useQuasar();
     return{
+      successChange: false,
       wait: true,
       v$: useVuelidate(),
       data: {
@@ -666,6 +722,10 @@ export default defineComponent({
         sales: 0,
         wantsToBe: null,
         photo: null
+      },
+      coord: {
+        lat: null,
+        lng: null
       },
       product: {
         uuid: null,
@@ -746,7 +806,8 @@ export default defineComponent({
       vit_opt: ["2005-2010", "2010-2015", "2015-2020", "2020 e lart"],
       str_opt: ["garsoniere","1+1","2+1","3+1","komercial","zyra","troje"],
       sip_opt: ["0-50 m2","50-100 m2","mbi 100 m2"],
-      con_opt: ["part-time", "full-time"]
+      con_opt: ["part-time", "full-time"],
+      successP: false
 
     }
   },
@@ -755,6 +816,8 @@ export default defineComponent({
     setTimeout(() => {
       // find data in localstorage 
       this.data = this.$q.localStorage.getItem('account');
+      this.coord.lat = this.data.location.latitude
+      this.coord.lng = this.data.location.longitude
       this.wait = false
     }, 1000);
   },

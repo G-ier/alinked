@@ -13,7 +13,8 @@ const routes = [
       { path: '/manage', component: () => import('src/pages/dashboard/Manage.vue'), meta: { requiresAuth: true, elevatedAccess: true }},
       { path: '/exp', component: () => import('src/pages/Exp.vue')},
       { path: '/maps', component: () => import('src/pages/MapsImp.vue')},
-      { path: '/directmsg', component: () => import('src/pages/MapsImp.vue'), meta: {requiresAuth: true}}
+      { path: '/directmsg', component: () => import('src/pages/directmsg/DM.vue'), meta: {requiresAuth: true}},
+      { path: '/directmsg/chat', component: () => import('src/pages/directmsg/Chat.vue'), meta: {requiresAuth: true}}
     ]
   },
 
