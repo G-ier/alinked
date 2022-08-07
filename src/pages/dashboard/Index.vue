@@ -10,6 +10,10 @@
       </div>
     </div>
     <div class="main" v-if="data.type == 'normal' && wait==false">
+      <q-banner dense inline-actions class="text-white bg-red" v-if="(data.wantsToBe == 'institution' || data.wantsToBe == 'seller') && data.type == 'normal'">
+        Llogaria juaj po vertetohet. Sapo te kryhet vertetimi do te perfitoni akses te plote.
+        
+      </q-banner>
       <div class="row width90 q-mb-lg">
         <h5 class="text-h5 popreg">Profili juaj</h5>
         <q-space/>
@@ -17,8 +21,8 @@
       </div>
       <div class="width90 columny">
         <q-btn flat label="Blerjet tuaja" @click="blerje=true"/>
-        <q-btn flat label="Te dhenat e profilit" @click="profile=true"/>
-      </div>
+        <q-btn flat label="Te dhenat e ofilit" @click="profile=true"/>
+      </div>pr
     </div>
     <div class="main" v-if="data.type == 'seller' && wait==false">
       <div class="row width90 q-mb-lg">
@@ -55,6 +59,45 @@
       </div>
       <div class="width90 columny">
         <q-btn flat label="Te dhenat e profilit" @click="profileP=true"/>
+      </div>
+    </div>
+    <div class="main" v-if="data.type == 'institution' && wait==false">
+      <q-banner dense inline-actions class="text-white bg-red" v-if="(data.wantsToBe == 'institution' || data.wantsToBe == 'seller') && data.type == 'normal'">
+        Llogaria juaj po vertetohet. Sapo te kryhet vertetimi do te perfitoni akses te plote.
+        
+      </q-banner>
+      <div class="row width90 items-center q-mb-lg">
+        <h5 class="text-h5 popreg">Dashboard</h5>
+        <q-space/>
+        <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true"/>
+        <q-icon name="logout" size="sm" @click="logout"/>
+      </div>
+      <div class="width90 row">
+        <div id="saleschart" class="row main-blue-bg">
+          <p class="popreg text-white text-h5">Sales</p>
+          <q-space/>
+          <p class="popreg text-white text-h5">{{data.sales}}</p>
+        </div>
+      </div>
+      <div class="width90 row q-my-md">
+        <div class="product col q-mr-lg main-blue-bg" v-ripple @click="newproduct = true">
+          <p class="popreg text-white">Shto produkt</p>
+          
+          <q-icon
+            name="add"
+            color="white"
+            size="45"
+          />
+        </div>
+        <q-space/>
+        <div class="product col main-blue-bg" v-ripple>
+          <p class="popreg text-white text-center">Menaxho produktet</p>
+          <q-icon
+            name="library_books"
+            color="white"
+            size="45"
+          />
+        </div>
       </div>
     </div>
     <q-dialog

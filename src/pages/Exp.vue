@@ -10,19 +10,61 @@
       </div>
     </div>
     <div class="main" v-if="data.type == 'normal' && wait==false">
+      <q-banner dense inline-actions class="text-white bg-red" v-if="(data.wantsToBe == 'institution' || data.wantsToBe == 'seller') && data.type == 'normal'">
+        Llogaria juaj po vertetohet. Sapo te kryhet vertetimi do te perfitoni akses te plote.
+        
+      </q-banner>
       <div class="row width90 q-mb-lg">
         <h5 class="text-h5 popreg">Profili juaj</h5>
       </div>
       <div class="width90 columny">
-        <q-btn flat label="Blerjet tuaja" @click="blerje=true"/>
+        <q-btn flat label="Mesazhet tuaja" @click="goto('directmsg')"/>
         <q-btn flat label="Te dhenat e profilit" @click="profile=true"/>
       </div>
     </div>
     <div class="main" v-if="data.type == 'seller' && wait==false">
+      
       <div class="row width90 items-center q-mb-lg">
         <h5 class="text-h5 popreg">Dashboard</h5>
         <q-space/>
-        <q-icon name="settings" size="sm" @click="profileP=true"/>
+        <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true"/>
+        <q-icon name="logout" size="sm"/>
+      </div>
+      <div class="width90 row">
+        <div id="saleschart" class="row main-blue-bg">
+          <p class="popreg text-white text-h5">Sales</p>
+          <q-space/>
+          <p class="popreg text-white text-h5">{{data.sales}}</p>
+        </div>
+      </div>
+      <div class="width90 row q-my-md">
+        <div class="product col q-mr-lg main-blue-bg" v-ripple @click="newproduct = true">
+          <p class="popreg text-white">Shto produkt</p>
+          
+          <q-icon
+            name="add"
+            color="white"
+            size="45"
+          />
+        </div>
+        <q-space/>
+        <div class="product col main-blue-bg" v-ripple>
+          <p class="popreg text-white text-center">Menaxho produktet</p>
+          <q-icon
+            name="library_books"
+            color="white"
+            size="45"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="main" v-if="data.type == 'institution' && wait==false">
+      
+      <div class="row width90 items-center q-mb-lg">
+        <h5 class="text-h5 popreg">Dashboard</h5>
+        <q-space/>
+        <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true"/>
+        <q-icon name="logout" size="sm"/>
       </div>
       <div class="width90 row">
         <div id="saleschart" class="row main-blue-bg">
@@ -53,52 +95,13 @@
       </div>
     </div>
     <q-dialog
-      v-model="blerje"
-      persistent
-      :maximized="true"
-      transition-show="slide-up"
-      transition-hide="slide-down"
-    >
-      <q-card class="bg-primary text-white">
-        <q-bar>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip class="bg-white text-primary">Close</q-tooltip>
-          </q-btn>
-        </q-bar>
-
-        <q-card-section>
-          <div class="text-h6">Blerjet tuaja</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <div class="width90 columny">
-            <q-list bordered separator>
-              <q-item clickable v-ripple>
-                <q-item-section>
-                  <q-item-label overline>Blerja 1</q-item-label>
-                  <q-item-label>Data</q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-ripple>
-                <q-item-section>
-                  <q-item-label overline>Blerja 2</q-item-label>
-                  <q-item-label>Data</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </div>
-        </q-card-section>
-      </q-card>
-    </q-dialog>
-    <q-dialog
       v-model="profile"
       persistent
       :maximized="true"
       transition-show="slide-up"
       transition-hide="slide-down"
     >
-      <q-card class="bg-primary text-white">
+      <q-card class="bg-white text-white">
         <q-bar>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
@@ -107,13 +110,15 @@
         </q-bar>
 
         <q-card-section>
-          <div class="text-h6">Ndryshoni te dhenat tuaja</div>
+          <div class="text-h6 text-black">Ndryshoni te dhenat tuaja</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <div class="width90 columny">
-            <q-input class="q-mb-lg fullwidth" standout="bg-white text-grey" color="white" v-model="data.name" label="Emri" />
-            <q-input class="q-mb-lg fullwidth" standout="bg-white text-grey" v-model="data.email" label="Email" />
+          <div class="fullwidth innerdope">
+            <div class="width90 innerpeace">
+              <q-input filled v-model="data.name" class="q-mb-lg" label="Emri"/>
+              <q-input filled v-model="data.email" class="q-mb-lg" label="Email" />
+            </div>
           </div>
         </q-card-section>
       </q-card>
@@ -443,6 +448,9 @@ export default defineComponent({
     }
   },
   methods: {
+    goto(route){
+      this.$router.push('directmsg')
+    },
     autoget(){
       Geolocation.getCurrentPosition().then(newPosition => {
           console.log('Current', newPosition)
@@ -655,7 +663,9 @@ export default defineComponent({
         location: null,
         password: null,
         joined: Date.now(),
-        sales: 0
+        sales: 0,
+        wantsToBe: null,
+        photo: null
       },
       product: {
         uuid: null,

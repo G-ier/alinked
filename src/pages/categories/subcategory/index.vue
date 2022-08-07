@@ -4,7 +4,8 @@
       <div class="totaled">
         <q-icon name="arrow_back_ios_new" size="xs" class="custom-black" @click="gotoHome('auto', 'Auto')" v-if="route=='shesblej'"/>
         <q-icon name="arrow_back_ios_new" size="xs" class="custom-black" @click="$router.go(-1)" v-if="route!='shesblej'"/>
-        <p class="text-h5 custom-black" style="margin: 0; padding: 0;">{{title}}</p>
+        <p class="text-h5 custom-black" style="margin: 0; padding: 0;" v-if="route=='shesblej'">{{title}}</p>
+        <p class="text-h5 custom-black" style="margin: 0; padding: 0;" v-if="route!='shesblej'">Listime</p>
         <q-icon name="arrow_back_ios_new" style="z-index: -1000; opacity: 0"/>
       </div>
     </div>

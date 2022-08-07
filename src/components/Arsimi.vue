@@ -17,7 +17,7 @@
       </div>
       <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="visible" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2" >
         <div class="row no-wrap">
-          <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}" v-ripple>
+          <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}" v-ripple @click="goto('/categories/subcategory/', 'list-places', 'institucione arsimore')">
             <q-img
               :src="image2"
               :ratio="16/9"
@@ -153,6 +153,7 @@ export default {
     }
   },
   methods:{
+    // /categories/subcategory/ , list-places, 
     goto(link, route, title){
       this.$router.push({path: link, query: {routename: route, routetitle: title}})
     }
