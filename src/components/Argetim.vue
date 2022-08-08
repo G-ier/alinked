@@ -6,14 +6,14 @@
           :ratio="16/9"
         />
     </div>
-    <q-btn unelevated rounded color="primary" label="Argetim dhe shplodhje" style="margin-top: 50px"><q-icon name="search" style="padding-left: 10px" /></q-btn>
+    <q-btn unelevated class="hooper" rounded color="primary" style="margin-top: 20px; margin-bottom: 15px"><q-space/><span>Argetim dhe shplodhje</span><q-space/><q-icon name="search" /></q-btn>
     <div class="kats">
       <div class="katsh">
         <p class="katnav text-grey-10">Nenkategorite</p>
       </div>
       <div class="katss">
         <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="false" style="height: 120px; max-width: 3000px;" class="v-sc">
-          <div class="row no-wrap">
+          <div class="row hooper2 no-wrap">
             <div class="katsd relative-position" v-ripple.center:white v-for="el in kats" :key="el.id" :class="{extraMargined: el.id != 1}" @click="goto(el.link, 'list-places', el.title)">
               
 
@@ -149,5 +149,39 @@ export default {
 .v-sc{
   overflow: visible;
   width: 100%;
+}
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imagerow{
+    width: 20%;
+    height: 20vh;
+    margin: 2.1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+  }
+  .hooper{
+    width: 30%
+  }
+  .kats{
+    width: 70%;
+    height: 300px;
+    padding: 0px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transform: translateX(0%);
+  }
+  .hooper2{
+    width: 110%;
+    transform: translateX(00%);
+  }
+  
 }
 </style>

@@ -88,4 +88,39 @@ export default {
     justify-content: center;
     align-items: center;
 }
+.hooper{
+    width: 70%
+  }
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imagerow{
+    width: 20%;
+    height: 20vh;
+    margin: 2.1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+  }
+  .hooper{
+    width: 30%
+  }
+  .opt{
+    width: 40%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .hooper2{
+    width: 110%;
+    transform: translateX(-10%);
+  }
+  
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex animated-fade" style="min-height: 400px">
+  <q-page class="pager flex animated-fade" style="min-height: 400px">
     <div class="headerdis shadow-3">
       <div class="totaled">
         <q-icon name="arrow_back_ios_new" size="xs" @click="gotoHome"/>
@@ -10,24 +10,26 @@
     <q-inner-loading v-if="route==null||route=='loading'" :showing="true">
       <q-spinner-gears size="50px" color="primary" />
     </q-inner-loading>
-    <Argetim v-if="route=='argetim'" />
-    <Shteti v-if="route=='shteti'" />
-    <Shendetesia v-if="route=='shendetesia'" />
-    <Sport v-if="route=='sport'" />
-    <Hotele v-if="route=='hotele'" />
-    <Arsimi v-if="route=='arsimi'" />
-    <Fetare v-if="route=='fetare'" />
-    <Diaspora v-if="route=='diaspora'" />
-    <Auto v-if="route=='auto'" />
-    <Sociale v-if="route=='sociale'" />
-    <Imobiliare v-if="route=='imobiliare'" />
-    <Turizem v-if="route=='turizem'" />
-    <Libri v-if="route=='libri'" />
-    <Markete v-if="route=='markete'" />
-    <Arti v-if="route=='arti'" />
-    <Pun v-if="route=='punesim'" />
-    <Qendra v-if="route=='qendra'" />
-    <Udhetime v-if="route=='udhetime'" />
+    
+        <Argetim v-if="route=='argetim'" />
+        <Shteti v-if="route=='shteti'" />
+        <Shendetesia v-if="route=='shendetesia'" />
+        <Sport v-if="route=='sport'" />
+        <Hotele v-if="route=='hotele'" />
+        <Arsimi v-if="route=='arsimi'" />
+        <Fetare v-if="route=='fetare'" />
+        <Diaspora v-if="route=='diaspora'" />
+        <Auto v-if="route=='auto'" />
+        <Sociale v-if="route=='sociale'" />
+        <Imobiliare v-if="route=='imobiliare'" />
+        <Turizem v-if="route=='turizem'" />
+        <Libri v-if="route=='libri'" />
+        <Markete v-if="route=='markete'" />
+        <Arti v-if="route=='arti'" />
+        <Pun v-if="route=='punesim'" />
+        <Qendra v-if="route=='qendra'" />
+        <Udhetime v-if="route=='udhetime'" />
+    
   </q-page>
 </template>
 
@@ -122,5 +124,23 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  .headerdis{
+    width: 70%;
+    height: 17vh;
+    background-color: rgb(226, 226, 226);
+    border-bottom-left-radius: 120px;
+    border-bottom-right-radius: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
 }
 </style>

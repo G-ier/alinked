@@ -1,22 +1,5 @@
 <template>
-  <q-page class="flex flex-center animated-fade">
-    <div class="main">
-        <div class="row items-center width90">
-            <q-icon name="arrow_back_ios_new" class="q-mr-lg" size="xs" @click="goto('/directmsg')"/>
-            <p class="text-h6 q-ma-none q-pa-none">Chat</p>
-        </div>
-        <div class="row items-center justify-center width90 q-mt-md">
-            <p class="text-p q-ma-none q-pa-none">{{routename}}</p>
-        </div>
-        <div class="fullwidth q-mt-lg" style="height: 100%">
-            <q-chat-message
-                v-for="msg in messages"
-                :key="msg.time.seconds"
-                :text="[msg.inhalt]"
-            />
-        </div>
-    </div>
-  </q-page>
+  <vue-advanced-chat/>
 </template>
 
 <script>
@@ -26,15 +9,23 @@ import { useQuasar } from 'quasar'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import ChatWindow from 'vue-advanced-chat'
+import 'vue-advanced-chat/dist/vue-advanced-chat.css'
 
 export default defineComponent({
   name: 'ChatPage',
+  components: {
+      ChatWindow
+    },
   data(){
     return{
       discussions: null,
-      messages: null,
+      
       data: null,
-      routename: this.$route.query.routename
+      routename: this.$route.query.routename,
+      rooms: [],
+      messages: [],
+      currentUserId: 1234
     }
     
   },
@@ -78,9 +69,14 @@ export default defineComponent({
   },
   async beforeMount(){
 
-    this.data = this.$q.localStorage.getItem('account');
-    this.messages = await this.getmsgs()
+    //this.data = this.$q.localStorage.getItem('account');
+    //this.messages = await this.getmsgs()
     
+  },
+  mounted(){
+    document.querySelector('vue-advanced-chat').currentUserId = this.currentUserId
+    document.querySelector('vue-advanced-chat').rooms = this.rooms
+    document.querySelector('vue-advanced-chat').messages = this.messages
   }
 })
 </script>

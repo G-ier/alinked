@@ -7,7 +7,7 @@
         />
     </div>
 
-    <q-btn unelevated rounded color="primary" style="width: 70%; margin-top: 20px; margin-bottom: 35px"><q-space/><span>Imobiliare</span><q-space/><q-icon name="search" /></q-btn>    
+    <q-btn unelevated class="hooper" rounded color="primary" style="margin-top: 20px; margin-bottom: 35px"><q-space/><span>Imobiliare</span><q-space/><q-icon name="search" /></q-btn>    
     
     <div class="kats">
         

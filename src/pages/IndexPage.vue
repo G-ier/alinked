@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex animated-fade">
+  <q-page class="pager flex animated-fade">
     <div class="header">
       <h5 class="title">Aplikacion</h5>
       <div class="mainsearch">
@@ -28,7 +28,7 @@
       </div>
       <div class="katss">
         <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="visible" style="height: 120px; max-width: 3000px;" class="v-sc">
-          <div class="row no-wrap">
+          <div class="row hooper2 no-wrap">
             <div class="katsd relative-position" v-ripple.center:white v-for="el in kats" :key="el.id" :class="{extraMargined: el.id != 1}" @click="goto(el.link, el.title)">
               <q-icon name="font_download" size="2rem" color="white"/>
               <q-separator />
@@ -371,5 +371,54 @@ export default defineComponent({
   overflow: visible;
   width: 100%;
   height: 100%;
+}
+@media only screen and (min-width: 1100px) {
+  .pager{
+    justify-content: center;
+  }
+  .header{
+    height: 15vh;
+    width: 70%;
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .welcome{
+    width: 70%;
+    height: 30vh;
+    padding: 20px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .kats{
+    width: 70%;
+    height: 30vh;
+    padding: 20px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .welph{
+    background-image: url('../assets/main.png');
+    background-size: cover;
+    position: absolute;
+    right: 22%;
+    width: 200px;
+    height: 200px;
+    transform: translateY(-120px);
+  }
+  .kat-main{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
 }
 </style>

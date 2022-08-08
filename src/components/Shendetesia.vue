@@ -109,4 +109,37 @@ export default {
     align-items: center;
     position: relative;
 }
+.hooper{
+    width: 70%
+  }
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imagerow{
+    width: 20%;
+    height: 20vh;
+    margin: 2.1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+  }
+  .hooper{
+    width: 30%
+  }
+  .kats{
+    width: 50%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+  }
+  .hooper2{
+    width: 110%;
+    transform: translateX(-10%);
+  }
+  
+}
 </style>

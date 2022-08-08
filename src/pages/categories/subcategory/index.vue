@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex animated-fade" style="min-height: 400px">
+  <q-page class="flex pager animated-fade" style="min-height: 400px">
     <div class="headerdis shadow-3">
       <div class="totaled">
         <q-icon name="arrow_back_ios_new" size="xs" class="custom-black" @click="gotoHome('auto', 'Auto')" v-if="route=='shesblej'"/>
@@ -75,5 +75,23 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  .headerdis{
+    width: 70%;
+    height: 17vh;
+    background-color: rgb(226, 226, 226);
+    border-bottom-left-radius: 120px;
+    border-bottom-right-radius: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
 }
 </style>

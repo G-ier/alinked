@@ -14,7 +14,7 @@
         <q-btn round dense color="primary" icon="expand_more" class="transition-ang" v-if="index!=2" @click="index+=1;animateScrollNext()"/>
       </div>
       <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="visible" style="max-height: 3000px;" class="v-sc-2">
-        <div class="column no-wrap">
+        <div class="column hooper2 no-wrap">
           <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}" v-ripple.center:white>
 
             <q-avatar size="50px" font-size="35px" color="secondary" text-color="white" icon="directions" />
@@ -213,5 +213,42 @@ export default {
 .cst-img{
   border-radius: 20px;
   height: 100px;
+}
+.hooper{
+    width: 70%
+  }
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imagerow{
+    width: 20%;
+    height: 20vh;
+    margin: 2.1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+  }
+  .hooper{
+    width: 30%
+  }
+  .kats{
+    width: 70%;
+    height: 300px;
+    padding: 0px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transform: translateX(0%);
+  }
+  .hooper2{
+    width: 110%;
+    transform: translateX(-20%);
+  }
+  
 }
 </style>

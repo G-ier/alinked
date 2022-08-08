@@ -13,14 +13,14 @@
     </div>
 
     <div class="fr animated-fade" v-if="resultOn==false">
-        <q-select class="q-my-md" standout="bg-grey text-white" v-model="model1" :options="options1" label="Kategoria" />
+        <q-select class="q-my-md" standout="bg-grey text-white" v-model="model1" :options="options1" label="Ngjyra" />
         <q-select class="" standout="bg-grey text-white" v-model="model2" :options="options2" label="Marka" />
         <q-select class="q-mt-md" standout="bg-grey text-white" v-model="model3" :options="options3" label="Karburanti" />
         <q-select class="q-mt-md" standout="bg-grey text-white" v-model="model4" :options="options4" label="Cmimi" />
         <q-select class="q-my-md" standout="bg-grey text-white" v-model="model5" :options="options5" label="Viti i Prodhimit" />
     </div>
 
-    <q-btn @click="search" v-if="resultOn==false" class="animated-fade" unelevated rounded color="primary" style="width: 70%; margin-top: 10px; margin-bottom: 15px"><q-space/><span>Kerko</span><q-space/><q-icon name="search" /></q-btn>    
+    <q-btn @click="search" v-if="resultOn==false" class="animated-fade hooper" unelevated rounded color="primary" style="margin-top: 10px; margin-bottom: 15px"><q-space/><span>Kerko</span><q-space/><q-icon name="search" /></q-btn>    
     
     <div class="results animated-fade" v-if="resultOn">
         success
@@ -44,11 +44,51 @@ export default {
     var index = ref(0)
     return {
       fPanel: ref(false),
-      model1: null,
-      model2: null,
-      model3: null,
-      model4: null,
-      model5: null
+      model1: ref(null),
+      model2: ref(null),
+      model3: ref(null),
+      model4: ref(null),
+      model5: ref(null),
+      options1: [
+        "E bardhe",
+        "E kuqe",
+        "Blu",
+        "E verdhe"
+      ],
+      options2: [
+        "mercedes-benz",
+        "volkswagen",
+        "audi",
+        "fiat",
+        "volvo",
+        "ford",
+        "iveco",
+        "kia",
+        "toyota",
+        "nisan",
+        "porche",
+        "range rover",
+        "humer",
+        "ferrari",
+        "lamborgini",
+        "bugatti",
+        "BMW"
+      ],
+      options3: [
+        "benzine",
+        "diezel",
+        "gaz"
+      ],
+      options4: [
+        "euro",
+        "leke"
+      ],
+      options5: [
+        "2005-2010",
+        "2010-2015",
+        "2015-2020",
+        "2020 e lart"
+      ]
     }
   },
   data(){
@@ -86,5 +126,27 @@ export default {
 }
 .results{
     
+}
+.hooper{
+    width: 70%
+  }
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  .hooper{
+    width: 30%
+  }
+  .main{
+    width: 60%;
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
 }
 </style>

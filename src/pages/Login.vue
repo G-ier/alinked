@@ -5,8 +5,8 @@
             <h4 class="text-h4 popreg main-blue q-pa-none q-ma-none" >Logohu ne platformen tone.</h4>
         </div>
         <div class="fr2 q-mb-md">
-            <q-input class="q-mb-lg fullwidth" standout="bg-grey text-white" v-model="email" label="Email" />
-            <q-input class="q-mb-lg fullwidth" standout="bg-grey text-white" v-model="password" label="Password" type="password" />
+            <q-input class="q-mb-lg fullwidth hooper" standout="bg-grey text-white" v-model="email" label="Email" />
+            <q-input class="q-mb-lg fullwidth hooper" standout="bg-grey text-white" v-model="password" label="Password" type="password" />
         </div>
         <div class="fr2">
 
@@ -118,5 +118,13 @@ export default defineComponent({
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+}
+@media only screen and (min-width: 1100px) {
+  
+  .hooper{
+    width: 30%
+  }
+  
+  
 }
 </style>

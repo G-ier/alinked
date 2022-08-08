@@ -7,7 +7,7 @@
         />
     </div>
     <div class="space"></div>
-    <q-btn unelevated rounded color="primary" style="width: 70%; margin-top: 20px; margin-bottom: 15px"><q-space/><span>Punesim</span><q-space/><q-icon name="search" /></q-btn>    
+    <q-btn unelevated class="hooper" rounded color="primary" style="margin-top: 20px; margin-bottom: 15px"><q-space/><span>Punesim</span><q-space/><q-icon name="search" /></q-btn>    
     <div class="kats">
       <div class="fullwidth row no-wrap">
         <div class="katsd bg-darkblue relative-position" v-ripple.center:white>
@@ -114,5 +114,39 @@ export default {
 }
 .space{
   height: 50px;
+}
+.hooper{
+    width: 70%
+  }
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imagerow{
+    width: 20%;
+    height: 20vh;
+    margin: 2.1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+  }
+  .hooper{
+    width: 30%
+  }
+  .kats{
+    width: 50%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    transform: translateX(25%);
+  }
+  .hooper2{
+    width: 110%;
+    transform: translateX(-10%);
+  }
+  
 }
 </style>

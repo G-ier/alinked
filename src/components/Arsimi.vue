@@ -7,7 +7,7 @@
         />
     </div>
     
-    <q-btn unelevated rounded color="primary" style="width: 70%; margin-top: 20px; margin-bottom: 15px"><q-space/><span>Arsimi</span><q-space/><q-icon name="search" /></q-btn>
+    <q-btn unelevated class="hooper" rounded color="primary" style="margin-top: 20px; margin-bottom: 15px"><q-space/><span>Arsimi</span><q-space/><q-icon name="search" /></q-btn>
 
     <div class="kats" v-touch-swipe="onScroll">
       <div class="katsh">
@@ -15,8 +15,8 @@
         <q-space />
         <q-btn round dense color="primary" icon="chevron_right" class="transition-ang" v-if="index!=3" @click="index+=1;animateScrollNext()"/>
       </div>
-      <q-scroll-area ref="scrollAreaRef" :thumb-style="thumbStyle" :visible="visible" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2" >
-        <div class="row no-wrap">
+      <q-scroll-area ref="scrollAreaRef"  :thumb-style="thumbStyle" :visible="visible" style="max-height: 1200px; max-width: 3000px;" class="v-sc-2" >
+        <div class="row hooper2 no-wrap">
           <div class="conti shadow-3" :style="{'margin-left': leftM + 'px'}" v-ripple @click="goto('/categories/subcategory/', 'list-places', 'institucione arsimore')">
             <q-img
               :src="image2"
@@ -244,5 +244,42 @@ export default {
 .cst-img{
   border-radius: 20px;
   height: 100px;
+}
+.hooper{
+    width: 70%
+  }
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imagerow{
+    width: 30%;
+    height: 20vh;
+    margin: 2.1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+  }
+  .hooper{
+    width: 30%
+  }
+  .kats{
+    width: 70%;
+    height: 300px;
+    padding: 0px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transform: translateX(0%);
+  }
+  .hooper2{
+    width: 110%;
+    transform: translateX(-10%);
+  }
+  
 }
 </style>

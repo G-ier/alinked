@@ -5,7 +5,7 @@
       <router-view/>
     </q-page-container>
 
-    <q-footer class="bg-white text-primary">
+    <q-footer class="pager bg-white text-primary">
         <div id="main-end" style="background: rgba(0,0,0,0);">
           <div class="btn-over upper-hand">
              <q-btn push color="secondary" round icon="search" class="upper-hand" @click="store.search = true"/>
@@ -272,5 +272,23 @@ export default defineComponent({
 .result{
   font-size: 1.2rem;
   font-weight: 400;
+}
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  #main-end{
+    width: 70%;
+    height: 50px;
+    position: relative;
+    bottom: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px 0 5px;
+    background: rgba(0,0,0,0);
+  }
 }
 </style>

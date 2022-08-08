@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center animated-fade">
+  <q-page class="flex pager flex-center animated-fade">
     <div class="waiter" v-if="wait==true">
       <div>
         <q-spinner-bars
@@ -27,8 +27,8 @@
       <div class="row width90 items-center q-mb-lg">
         <h5 class="text-h5 popreg">Dashboard</h5>
         <q-space/>
-        <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true"/>
-        <q-icon name="logout" size="sm"/>
+        <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true;tabprofile= 'data'"/>
+        <q-icon name="logout" size="sm" @click="logout"/>
       </div>
       
       <div class="width90 row q-my-md">
@@ -57,8 +57,8 @@
       <div class="row width90 items-center q-mb-lg">
         <h5 class="text-h5 popreg">Dashboard</h5>
         <q-space/>
-        <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true"/>
-        <q-icon name="logout" size="sm"/>
+        <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true;tabprofile = 'data'"/>
+        <q-icon name="logout" size="sm" @click="logout"/>
       </div>
       <div class="width90 row q-my-md">
         <div class="product col q-mr-lg main-blue-bg" v-ripple @click="newproduct = true">
@@ -471,6 +471,18 @@ export default defineComponent({
     goto(route){
       this.$router.push('directmsg')
     },
+    async logout() {
+      //const auth = getAuth();
+      await firebase.auth().signOut();
+      this.$router.push('/login')
+        .then(() => {
+        this.$q.notify({message: 'Sign Out i suksesshem.', type: 'positive'})
+        this.$q.localStorage.remove('account')
+        this.$q.localStorage.remove('credentials')
+        // window.location.reload();
+      })
+      .catch(error =>  console.log('error',error))
+    },
     autoget(){
       Geolocation.getCurrentPosition().then(newPosition => {
           console.log('Current', newPosition)
@@ -875,6 +887,17 @@ export default defineComponent({
 #mapDivRef{
   width: 100vw;
   height: 70vh;
+  
+}
+@media only screen and (min-width: 1100px) {
+  
+  .hooper{
+    width: 30%
+  }
+  .main{
+    width: 60%;
+    
+  }
   
 }
 </style>

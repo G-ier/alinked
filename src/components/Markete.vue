@@ -7,7 +7,7 @@
         />
     </div>
     
-    <q-btn unelevated rounded color="primary" style="width: 70%; margin-top: 20px; margin-bottom: 15px"><q-space/><span>Markete dhe Tregje</span><q-space/><q-icon name="search" /></q-btn>
+    <q-btn unelevated class="hooper" rounded color="primary" style="margin-top: 20px; margin-bottom: 15px"><q-space/><span>Markete dhe Tregje</span><q-space/><q-icon name="search" /></q-btn>
 
     <div class="space"></div>
 
@@ -195,6 +195,43 @@ export default {
 .cst-img{
   border-radius: 20px;
   height: 100px;
+}
+.hooper{
+    width: 70%
+  }
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imagerow{
+    width: 30%;
+    height: 20vh;
+    margin: 2.1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+  }
+  .hooper{
+    width: 30%
+  }
+  .kats{
+    width: 70%;
+    height: 300px;
+    padding: 0px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transform: translateX(0%);
+  }
+  .hooper2{
+    width: 110%;
+    transform: translateX(-10%);
+  }
+  
 }
 .r9{
     border-radius: 7px;

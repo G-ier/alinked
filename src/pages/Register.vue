@@ -17,9 +17,9 @@
             </q-tabs>
         </div>
         <div class="fr2 q-mb-md animated-fade" v-if="tab=='normal'">
-            <q-input class="q-my-lg fullwidth" standout="bg-grey text-white" v-model="username" error-message="Korigjoni fushen" :error="nameError" label="Username"/>
-            <q-input class="q-mb-lg fullwidth" standout="bg-grey text-white" v-model="email" error-message="Korigjoni fushen" :error="emailError" label="Email" />
-            <q-input class="q-mb-lg fullwidth" standout="bg-grey text-white" v-model="pass" error-message="Korigjoni fushen" :error="passError" label="Password" />
+            <q-input class="q-my-lg fullwidth hooper" standout="bg-grey text-white" v-model="username" error-message="Korigjoni fushen" :error="nameError" label="Username"/>
+            <q-input class="q-mb-lg fullwidth hooper" standout="bg-grey text-white" v-model="email" error-message="Korigjoni fushen" :error="emailError" label="Email" />
+            <q-input class="q-mb-lg fullwidth hooper" standout="bg-grey text-white" v-model="pass" error-message="Korigjoni fushen" :error="passError" label="Password" />
         </div>
         <div class="fr2 q-mb-md animated-fade" v-if="tab=='seller'">
             <q-stepper
@@ -462,4 +462,12 @@ export default defineComponent({
     height: 100px;
 }
 #over_map { position: absolute; top: 85%; left: 20%; z-index: 99; background-color: transparent; border: none; box-shadow: none;}
+@media only screen and (min-width: 1100px) {
+  
+  .hooper{
+    width: 30%
+  }
+  
+  
+}
 </style>

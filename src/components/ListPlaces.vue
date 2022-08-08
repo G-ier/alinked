@@ -223,4 +223,23 @@ export default {
     
 }
 #over_map { position: absolute; top: 85%; left: 20%; z-index: 99; background-color: transparent; border: none; box-shadow: none;}
+@media only screen and (min-width: 1100px) {
+  .pager{
+    display: flex;
+    justify-content: center;
+  }
+  .hooper{
+    width: 30%
+  }
+  .main{
+    width: 60%;
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
 </style>
