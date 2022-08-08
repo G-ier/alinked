@@ -14,8 +14,11 @@
         Llogaria juaj po vertetohet. Sapo te kryhet vertetimi do te perfitoni akses te plote.
         
       </q-banner>
-      <div class="row width90 q-mb-lg">
-        <h5 class="text-h5 popreg">Profili juaj</h5>
+      <div class="row width90 items-center q-mb-lg">
+        <h5 class="text-h5 popreg">Dashboard</h5>
+        <q-space/>
+        <q-icon name="settings" size="sm" class="q-mr-lg" @click="profileP=true;tabprofile= 'data'"/>
+        <q-icon name="logout" size="sm" @click="logout"/>
       </div>
       <div class="width90 columny">
         <q-btn flat label="Mesazhet tuaja" @click="goto('directmsg')"/>

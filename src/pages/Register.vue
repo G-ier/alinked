@@ -19,7 +19,7 @@
         <div class="fr2 q-mb-md animated-fade" v-if="tab=='normal'">
             <q-input class="q-my-lg fullwidth hooper" standout="bg-grey text-white" v-model="username" error-message="Korigjoni fushen" :error="nameError" label="Username"/>
             <q-input class="q-mb-lg fullwidth hooper" standout="bg-grey text-white" v-model="email" error-message="Korigjoni fushen" :error="emailError" label="Email" />
-            <q-input class="q-mb-lg fullwidth hooper" standout="bg-grey text-white" v-model="pass" error-message="Korigjoni fushen" :error="passError" label="Password" />
+            <q-input class="q-mb-lg fullwidth hooper" standout="bg-grey text-white" v-model="password" error-message="Korigjoni fushen" :error="passError" label="Password" />
         </div>
         <div class="fr2 q-mb-md animated-fade" v-if="tab=='seller'">
             <q-stepper
@@ -330,7 +330,7 @@ export default defineComponent({
             return
         }
         if(this.markerinfo.set == false){
-          if(this.tab == 'premium'){
+          if(this.tab == 'premium' ||this.tab == 'normal'){
             console.log('cool')
           } else {
             this.$q.notify({
